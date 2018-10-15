@@ -6,8 +6,19 @@
 
 
 # About
-This project was build using Spring Boot framework and H2 in memory database.
+This project was build using Spring Boot framework and H2 in memory database. The database consists of only one table for simplicity purposes.
 
+## offer
+  Column   |            Type             |
+-----------|:---------------------------:|
+ id        | Long                      |
+ name    | String      |
+ description | String      |
+ expiration        | Date      |
+ price| Float     |
+ currency     | String      |
+ canceled   | boolean                     |
+ 
 # How to build and run
 
 ```
