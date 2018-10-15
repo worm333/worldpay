@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.exc.InvalidFormatException;
 import com.worldpay.constants.Constants;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -18,7 +19,7 @@ public class DateDeserializer extends JsonDeserializer<Date> {
     public Date deserialize(JsonParser parser, DeserializationContext context)
             throws IOException, JsonProcessingException {
         try {
-            return Constants.SIMPLE_DATE_FORMAT.parse(parser.getText());
+            return new SimpleDateFormat(Constants.DATE_FORMAT_STRING).parse(parser.getText());
         } catch (ParseException e) {
             throw new InvalidFormatException(parser, "Please input date in the following format: " + Constants.DATE_FORMAT_STRING, parser.getText(), Date.class);
         }

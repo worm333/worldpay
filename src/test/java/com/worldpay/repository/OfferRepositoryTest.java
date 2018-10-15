@@ -10,6 +10,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -40,7 +41,7 @@ public class OfferRepositoryTest extends TestBase {
         mockMvc.perform(get("/offer/search/query?canceled=true")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.page.totalElements").value(2));
 
-        String dateString = Constants.SIMPLE_DATE_FORMAT.format(new Date());
+        String dateString = new SimpleDateFormat(Constants.DATE_FORMAT_STRING).format(new Date());
 
         mockMvc.perform(get("/offer/search/query?beforeDate=" + dateString)).andExpect(status().isOk())
                 .andExpect(jsonPath("$.page.totalElements").value(0));
